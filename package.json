@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "build": "vite build"
+  },
   "devDependencies": {
     "supabase": "^2.54.11"
   }
