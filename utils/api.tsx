@@ -1,7 +1,6 @@
 import { projectId } from './supabase/info';
 
-const API_BASE = `https://${projectId}.supabase.co/functions/v1/make-server-4c8d5f20`;
-
+const API_BASE = `https://${projectId}.supabase.co/functions/v1/server`;;
 export const api = {
   async request(endpoint: string, options: RequestInit = {}) {
     const response = await fetch(`${API_BASE}${endpoint}`, options);
@@ -11,23 +10,23 @@ export const api = {
   },
 
   products: {
-    getAll: (token: string) => 
+    getAll: (token: string) =>
       api.request('/products', { headers: { Authorization: `Bearer ${token}` } }),
-    
+
     create: (token: string, product: any) =>
       api.request('/products', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify(product)
       }),
-    
+
     update: (token: string, id: string, data: any) =>
       api.request(`/products/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify(data)
       }),
-    
+
     delete: (token: string, id: string) =>
       api.request(`/products/${id}`, {
         method: 'DELETE',
